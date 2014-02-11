@@ -6,21 +6,12 @@ public class StageObjects : MonoBehaviour {
     float timeToScale = 1.0f;
     public int m_iIndex;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-    }
-
     public void ToTarget(Transform toTarget)
     {
         // 引数で渡されたオブジェクトに向かうベクトルを取得.
         Vector3 toPosition = toTarget.position - transform.position;
         // 取得したベクトルを自身のvelocityへと加えていく.
-        gameObject.rigidbody.velocity += toPosition.normalized * (3.0f / Mathf.Max(1.0f, toPosition.magnitude));
+        gameObject.rigidbody.velocity += toPosition.normalized * (10.0f / Mathf.Max(1.0f, toPosition.magnitude));
     }
 
     void OnCollisionEnter(Collision col)

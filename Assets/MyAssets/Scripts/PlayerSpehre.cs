@@ -51,7 +51,7 @@ public class PlayerSpehre : MonoBehaviour
     private IEnumerator ThisDestroy()
     {
         // 3秒後に処理を開始する.
-        yield return  new WaitForSeconds(3.0f);
+        yield return  new WaitForSeconds(10.0f);
         // 3秒後に自身を削除する
         Destroy(gameObject);
     }
