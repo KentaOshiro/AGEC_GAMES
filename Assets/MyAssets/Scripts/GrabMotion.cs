@@ -11,6 +11,7 @@ public class GrabMotion : MonoBehaviour
     GameObject m_carriedObject;
     bool m_handOpenThisFrame = false;
     bool m_handOpenLastFrame = false;
+    bool m_bIsGrab = false;
     float m_fKeepGrabMotionTime = 0.0f;
     // Use this for initialization
     void Start()
@@ -45,16 +46,18 @@ public class GrabMotion : MonoBehaviour
         if (AddForceObject == null)
             return;
         AddForceObject.rigidbody.AddForce(transform.forward * 1000.0f);
-        m_carriedObject = null;
+        m_bIsGrab = false;
     }
 
     // 手が閉じている場合の処理.
     void OnHandClose(Hand h)
     {
-        m_fKeepGrabMotionTime += Time.deltaTime;
+        m_bIsGrab = true;
+        
         AddForceObject = Instantiate(OriginalSphere) as GameObject;
+        AddForceObject.transform.localScale = new Vector3(0, 0, 0);
         AddForceObject.transform.position = transform.position + transform.forward;
-        AddForceObject.transform.localScale = new Vector3(m_fKeepGrabMotionTime, m_fKeepGrabMotionTime, m_fKeepGrabMotionTime);
+        
     }
 
     bool IsHandOpen(Hand h)
@@ -70,16 +73,25 @@ public class GrabMotion : MonoBehaviour
         float handX = hand.PalmPosition.ToUnityScaled().x;
         float handY = hand.PalmPosition.ToUnityScaled().y;
         Vector3 HandPosition = hand.PalmPosition.ToUnityScaled();
-        Debug.Log(HandPosition.magnitude);
         if (Mathf.Abs(handX) > rotThresholdX)
         {
             Camera.main.transform.Rotate(Vector3.up, handX * 2.0f);
         }
 
+       
         //if (Mathf.Abs(HandPosition.magnitude) < 10.0f)
         //{
         //    Camera.main.transform.rotation = Quaternion.Euler(new Vector3(-handY * 5.0f, handX * 50.0f, 0.0f));
         //}
+    }
+
+    void KeepGrabTimeToScale()
+    {
+        if (m_bIsGrab)
+        {
+            m_fKeepGrabMotionTime += Time.deltaTime;
+            AddForceObject.transform.localScale = new Vector3(m_fKeepGrabMotionTime, m_fKeepGrabMotionTime, m_fKeepGrabMotionTime);
+        }
     }
 
 
@@ -107,6 +119,7 @@ public class GrabMotion : MonoBehaviour
         {
             m_handOpenThisFrame = IsHandOpen(foremostHand);
             ProcessLook(foremostHand);
+            KeepGrabTimeToScale();
             HandCallbacks(foremostHand);
         }
         m_handOpenLastFrame = m_handOpenThisFrame;

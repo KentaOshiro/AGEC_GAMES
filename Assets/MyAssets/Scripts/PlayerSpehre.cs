@@ -24,5 +24,6 @@ public class PlayerSpehre : MonoBehaviour {
     {
         m_bIsCollision = true;
         gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        gameObject.renderer.enabled = false;
     }
 }
