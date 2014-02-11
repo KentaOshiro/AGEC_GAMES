@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 0
 --- !u!54 &5819330
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,7 +185,6 @@ GameObject:
   - 23: {fileID: 202394508}
   - 54: {fileID: 202394507}
   - 114: {fileID: 202394506}
-  - 114: {fileID: 202394505}
   m_Layer: 0
   m_Name: Cube
   m_TagString: SuctionObject
@@ -192,17 +192,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &202394505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 202394504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &202394506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 1
 --- !u!54 &202394507
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -311,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 2
 --- !u!54 &245013906
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -408,6 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 3
 --- !u!54 &283204068
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -505,6 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 4
 --- !u!54 &763275811
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -714,6 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 5
 --- !u!54 &865152203
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -811,6 +805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 6
 --- !u!54 &920510208
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -908,6 +903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 7
 --- !u!54 &992304060
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1005,6 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 8
 --- !u!54 &1099177394
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1102,6 +1099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 9
 --- !u!54 &1139849190
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1181,7 +1179,6 @@ GameObject:
   - 23: {fileID: 1216549408}
   - 54: {fileID: 1216549407}
   - 114: {fileID: 1216549406}
-  - 114: {fileID: 1216549405}
   m_Layer: 0
   m_Name: Cube
   m_TagString: SuctionObject
@@ -1189,17 +1186,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1216549405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1216549404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1216549406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1211,6 +1197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 10
 --- !u!54 &1216549407
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1308,6 +1295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 11
 --- !u!54 &1377423000
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1405,6 +1393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 12
 --- !u!54 &1449694095
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1703,6 +1692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71d718d86594d842a2104b632eaaab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iIndex: 13
 --- !u!54 &1840446785
 Rigidbody:
   m_ObjectHideFlags: 0

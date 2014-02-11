@@ -73,10 +73,9 @@ public class GrabMotion : MonoBehaviour
         float handX = hand.PalmPosition.ToUnityScaled().x;
         float handY = hand.PalmPosition.ToUnityScaled().y;
         Vector3 HandPosition = hand.PalmPosition.ToUnityScaled();
+
         if (Mathf.Abs(handX) > rotThresholdX)
-        {
             Camera.main.transform.Rotate(Vector3.up, handX * 2.0f);
-        }
 
        
         //if (Mathf.Abs(HandPosition.magnitude) < 10.0f)
@@ -100,16 +99,10 @@ public class GrabMotion : MonoBehaviour
     void HandCallbacks(Hand h)
     {
         if (m_handOpenThisFrame && m_handOpenLastFrame == false)
-        {
-            Debug.Log("Release Grab");
             OnHandOpen(h);
-        }
 
         if (m_handOpenThisFrame == false && m_handOpenLastFrame == true)
-        {
-            Debug.Log("Is Grab");
             OnHandClose(h);
-        }
     }
 
     void FixedUpdate()
