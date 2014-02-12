@@ -13,6 +13,8 @@ public class GrabMotion : MonoBehaviour
     bool m_handOpenLastFrame = false;
     bool m_bIsGrab = false;
     float m_fKeepGrabMotionTime = 0.0f;
+    int m_iGrabCount = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -53,10 +55,10 @@ public class GrabMotion : MonoBehaviour
     void OnHandClose(Hand h)
     {
         m_bIsGrab = true;
-        
+        m_iGrabCount++;
         AddForceObject = Instantiate(OriginalSphere) as GameObject;
         AddForceObject.transform.localScale = new Vector3(0, 0, 0);
-        AddForceObject.transform.position = transform.position + transform.forward;
+        AddForceObject.transform.position = transform.position + (transform.forward * 2);
         
     }
 
@@ -101,7 +103,7 @@ public class GrabMotion : MonoBehaviour
         if (m_handOpenThisFrame && m_handOpenLastFrame == false)
             OnHandOpen(h);
 
-        if (m_handOpenThisFrame == false && m_handOpenLastFrame == true)
+        if (m_handOpenThisFrame == false && m_handOpenLastFrame == true && m_iGrabCount < 1)
             OnHandClose(h);
     }
 

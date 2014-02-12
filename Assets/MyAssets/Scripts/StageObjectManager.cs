@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StageObjectManager : MonoBehaviour {
+public class StageObjectManager : MonoBehaviour
+{
 
     public GameObject[] CreateObjects;
-
+    //public GameObject[] SuctionObjects;
     static int m_iUniqueID = 0;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         for (int i = 0; i < 30; ++i)
         {
             int index = Random.RandomRange(0, CreateObjects.Length);
@@ -18,10 +20,15 @@ public class StageObjectManager : MonoBehaviour {
             CreateObjects[index].tag = "SuctionObject";
             Instantiate(CreateObjects[index]);
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+        //GameObject.Find("StageObjectManager").SendMessage("Start");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+
 }
