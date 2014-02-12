@@ -12,10 +12,6 @@ public class PlayerSpehre : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        // 初めにステージ内に配置されている「SuctionObject」というタグを持つオブジェクトを全て取得する.
-        //SuctionObjects = GameObject.FindGameObjectsWithTag("SuctionObject");
-        //SuctionObjects = new List<GameObject>();
-
         SuctionObjects = GameObject.FindGameObjectsWithTag("SuctionObject");
 
         foreach (GameObject obj in SuctionObjects)
@@ -29,10 +25,6 @@ public class PlayerSpehre : MonoBehaviour
         // このオブジェクトが何にもぶつかっていない場合以下の処理は行わない.
         if (!m_bIsCollision)
             return;
-        //SuctionObjects = SuctionObjectManager.GetSuctionObjectArray();
-        // 何かにぶつかるとStartメソッドで取得したオブジェクトに対しメッセージを自身の位置情報付きで送信する.
-        //foreach (GameObject obj in SuctionObjectManager.GetSuctionObjectArray())
-        //    obj.SendMessage("ToTarget", transform);
 
         foreach (GameObject obj in SuctionObjectsArray)
         {
@@ -41,8 +33,8 @@ public class PlayerSpehre : MonoBehaviour
         }
 
 
-        // ThisDestroyメソッドのコルーチンを開始
-        //StartCoroutine("ThisDestroy");
+         //ThisDestroyメソッドのコルーチンを開始
+        StartCoroutine("ThisDestroy");
     }
 
     void OnCollisionEnter(Collision col)
@@ -74,7 +66,7 @@ public class PlayerSpehre : MonoBehaviour
     private IEnumerator ThisDestroy()
     {
         // 3秒後に処理を開始する.
-        yield return  new WaitForSeconds(10.0f);
+        yield return  new WaitForSeconds(2.0f);
         // 3秒後に自身を削除する
         Destroy(gameObject);
     }
