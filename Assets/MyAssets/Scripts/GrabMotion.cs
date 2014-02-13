@@ -117,6 +117,9 @@ public class GrabMotion : MonoBehaviour
             KeepGrabTimeToScale();
             HandCallbacks(foremostHand);
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && m_iGrabCount >= 1)
+            m_iGrabCount = 0;
         m_handOpenLastFrame = m_handOpenThisFrame;
     }
 }

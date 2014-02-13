@@ -4,16 +4,26 @@ using System.Collections.Generic;
 
 public class PlayerSpehre : MonoBehaviour
 {
-    [SerializeField]
-    GameObject[] SuctionObjects;
+    /// <summary>
+    /// ステージ内にあるSuctionObjectタグを持つオブジェクトを格納するための配列.
+    /// Startメソッド内でのみ用いられる.
+    /// これはFindGameObjectsWithTagがGameObject[]型の戻り値しか渡さないため.
+    /// </summary>
+    //GameObject[] SuctionObjects;
+
+    /// <summary>
+    /// ステージ内にあるSuctionObjectタグを持つオブジェクトを格納するための配列.
+    /// </summary>
     List<GameObject> SuctionObjectsArray = new List<GameObject>();
     bool m_bIsCollision = false;
 
     // Use this for initialization
     void Start()
     {
-        SuctionObjects = GameObject.FindGameObjectsWithTag("SuctionObject");
+        // FindGameObjectsWithTagはGameObject[]型を返すためテンポラリとして宣言しているSuctionObjectsにキャッシュする.
+        GameObject[] SuctionObjects = GameObject.FindGameObjectsWithTag("SuctionObject");
 
+        // 上記で取得したオブジェクトをList型にAddしていく.
         foreach (GameObject obj in SuctionObjects)
             SuctionObjectsArray.Add(obj);
 
@@ -26,9 +36,13 @@ public class PlayerSpehre : MonoBehaviour
         if (!m_bIsCollision)
             return;
 
+        // Startメソッドで取得した全オブジェクトに対し以下の処理を行う.
         foreach (GameObject obj in SuctionObjectsArray)
         {
+            // オブジェクトからプレイヤーの生成したブラックホールへと向かうベクトルを取得.
             Vector3 toPosition = transform.position - obj.transform.position;
+            // 取得したベクトルをオブジェクト自身のvelocityへと加えていく.
+            // 10.0f というのは吸収する速度.
             obj.rigidbody.velocity += toPosition.normalized * (10.0f / Mathf.Max(1.0f, toPosition.magnitude));
         }
 
@@ -46,7 +60,11 @@ public class PlayerSpehre : MonoBehaviour
 
         if (col.gameObject.tag == "SuctionObject")
         {
+            // ぶつかったSuctionObjectから不潔度を取得し、清潔度を管理するCleanlinessへ値を渡す.
+            Cleanliness.m_fCleanliness += col.gameObject.GetComponent<StageObjects>().m_fDirtinessdegree;
+            // 配列からこの要素を削除する.
             SuctionObjectsArray.Remove(col.gameObject);
+            // Gameシーン上から削除する.
             Destroy(col.gameObject);
         }
 
