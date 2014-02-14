@@ -15,7 +15,10 @@ public class PlayerSpehre : MonoBehaviour
     /// ステージ内にあるSuctionObjectタグを持つオブジェクトを格納するための配列.
     /// </summary>
     List<GameObject> SuctionObjectsArray = new List<GameObject>();
+
     bool m_bIsCollision = false;
+
+    float m_fStageDirtinessdegree = 0.0f;
 
     // Use this for initialization
     void Start()
@@ -25,7 +28,11 @@ public class PlayerSpehre : MonoBehaviour
 
         // 上記で取得したオブジェクトをList型にAddしていく.
         foreach (GameObject obj in SuctionObjects)
+        {
             SuctionObjectsArray.Add(obj);
+            m_fStageDirtinessdegree = obj.GetComponent<StageObjects>().m_fDirtinessdegree;
+        }
+            
 
     }
 
@@ -36,16 +43,19 @@ public class PlayerSpehre : MonoBehaviour
         if (!m_bIsCollision)
             return;
 
+        // オブジェクトのサイズに応じてステージオブジェクトに対する吸収率を変化させる.
+        float absorptivity = transform.localScale.magnitude * 2.0f;
+        Debug.Log(absorptivity);
+
         // Startメソッドで取得した全オブジェクトに対し以下の処理を行う.
         foreach (GameObject obj in SuctionObjectsArray)
         {
             // オブジェクトからプレイヤーの生成したブラックホールへと向かうベクトルを取得.
             Vector3 toPosition = transform.position - obj.transform.position;
             // 取得したベクトルをオブジェクト自身のvelocityへと加えていく.
-            // 10.0f というのは吸収する速度.
-            obj.rigidbody.velocity += toPosition.normalized * (10.0f / Mathf.Max(1.0f, toPosition.magnitude));
+            // absorptivityというのは吸収率.
+            obj.rigidbody.velocity += toPosition.normalized * (absorptivity / Mathf.Max(1.0f, toPosition.magnitude));
         }
-
 
          //ThisDestroyメソッドのコルーチンを開始
         StartCoroutine("ThisDestroy");
@@ -55,8 +65,8 @@ public class PlayerSpehre : MonoBehaviour
     {
         // 何かにぶつかった事を知らせるフラグを立てる.
         m_bIsCollision = true;
-        // このオブジェクトを不動の物とする
-        gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        // このオブジェクトの位置を動かさないようにする
+        gameObject.rigidbody.constraints = RigidbodyConstraints.FreezePosition;
 
         if (col.gameObject.tag == "SuctionObject")
         {

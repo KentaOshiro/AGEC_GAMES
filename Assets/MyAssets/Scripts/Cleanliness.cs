@@ -8,6 +8,15 @@ public static class Cleanliness {
     /// </summary>
     public static float m_fCleanliness = 0.0f;
 
+    /// <summary>
+    /// ステージの清潔度を％値で返す.
+    /// </summary>
+    /// <returns></returns>
+    public static float StageCleanliness()
+    {
+        return 0.0f;
+    }
+
     //// Use this for initialization
     //void Start () {
 	
