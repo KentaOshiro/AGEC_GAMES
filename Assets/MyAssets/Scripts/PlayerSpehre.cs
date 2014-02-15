@@ -6,13 +6,6 @@ public class PlayerSpehre : MonoBehaviour
 {
     /// <summary>
     /// ステージ内にあるSuctionObjectタグを持つオブジェクトを格納するための配列.
-    /// Startメソッド内でのみ用いられる.
-    /// これはFindGameObjectsWithTagがGameObject[]型の戻り値しか渡さないため.
-    /// </summary>
-    //GameObject[] SuctionObjects;
-
-    /// <summary>
-    /// ステージ内にあるSuctionObjectタグを持つオブジェクトを格納するための配列.
     /// </summary>
     List<GameObject> SuctionObjectsArray = new List<GameObject>();
     GameObject m_StageClearManager;
@@ -77,19 +70,7 @@ public class PlayerSpehre : MonoBehaviour
             // Gameシーン上から削除する.
             Destroy(col.gameObject);
         }
-
-        // ビューから表示しないようにする.
-        //gameObject.renderer.enabled = false;
     }
-
-    //public void DestroyStageObject(int index)
-    //{
-    //    // StageObjectsからSendMessageで呼ばれるこのメソッドは与えられたIndexを元に自身が持つ
-    //    // 配列から特定のIndexを持つオブジェクトを削除する.
-    //    foreach (GameObject obj in SuctionObjects)
-    //        if (obj.GetComponent<StageObjects>().m_iIndex == index)
-    //            Destroy(obj);
-    //}
 
     private IEnumerator ThisDestroy()
     {
