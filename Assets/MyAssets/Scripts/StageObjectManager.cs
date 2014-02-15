@@ -47,7 +47,6 @@ public class StageObjectManager : MonoBehaviour
             return;
 
         float cleanliness = Cleanliness.m_fCleanliness;
-        string text = "";
         Rect rect = new Rect(50, 10, 400, 300);
         m_GUIStyle.fontSize = 50;
     }

@@ -15,6 +15,7 @@ public class PlayerSpehre : MonoBehaviour
     /// ステージ内にあるSuctionObjectタグを持つオブジェクトを格納するための配列.
     /// </summary>
     List<GameObject> SuctionObjectsArray = new List<GameObject>();
+    GameObject m_StageClearManager;
 
     bool m_bIsCollision = false;
 
@@ -23,6 +24,7 @@ public class PlayerSpehre : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        m_StageClearManager = GameObject.Find("StageClearManager");
         // FindGameObjectsWithTagはGameObject[]型を返すためテンポラリとして宣言しているSuctionObjectsにキャッシュする.
         GameObject[] SuctionObjects = GameObject.FindGameObjectsWithTag("SuctionObject");
 
@@ -32,8 +34,6 @@ public class PlayerSpehre : MonoBehaviour
             SuctionObjectsArray.Add(obj);
             m_fStageDirtinessdegree = obj.GetComponent<StageObjects>().m_fDirtinessdegree;
         }
-            
-
     }
 
     // Update is called once per frame
@@ -45,7 +45,7 @@ public class PlayerSpehre : MonoBehaviour
 
         // オブジェクトのサイズに応じてステージオブジェクトに対する吸収率を変化させる.
         float absorptivity = transform.localScale.magnitude * 2.0f;
-        Debug.Log(absorptivity);
+        //Debug.Log(absorptivity);
 
         // Startメソッドで取得した全オブジェクトに対し以下の処理を行う.
         foreach (GameObject obj in SuctionObjectsArray)
@@ -95,6 +95,8 @@ public class PlayerSpehre : MonoBehaviour
     {
         // 3秒後に処理を開始する.
         yield return  new WaitForSeconds(2.0f);
+        // 自身を削除する前にStageClearManagerに対し現時点でステージをクリアしたか否かを確認させる.
+        m_StageClearManager.GetComponent<StageClearManager>().ShowResult();
         // 3秒後に自身を削除する
         Destroy(gameObject);
     }

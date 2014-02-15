@@ -103,7 +103,7 @@ public class GrabMotion : MonoBehaviour
         if (m_handOpenThisFrame && m_handOpenLastFrame == false)
             OnHandOpen(h);
 
-        if (m_handOpenThisFrame == false && m_handOpenLastFrame == true && m_iGrabCount < 1)
+        if (m_handOpenThisFrame == false && m_handOpenLastFrame == true && m_iGrabCount < 6)
             OnHandClose(h);
     }
 
