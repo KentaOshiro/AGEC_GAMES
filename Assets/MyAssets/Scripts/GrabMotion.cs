@@ -58,6 +58,7 @@ public class GrabMotion : MonoBehaviour
         m_iGrabCount++;
         AddForceObject = Instantiate(OriginalSphere) as GameObject;
         AddForceObject.transform.localScale = new Vector3(0, 0, 0);
+        m_fKeepGrabMotionTime = 0.0f;
         AddForceObject.transform.position = transform.position + (transform.forward * 2);
         
     }
@@ -103,7 +104,7 @@ public class GrabMotion : MonoBehaviour
         if (m_handOpenThisFrame && m_handOpenLastFrame == false)
             OnHandOpen(h);
 
-        if (m_handOpenThisFrame == false && m_handOpenLastFrame == true && m_iGrabCount < 6)
+        if (!m_handOpenThisFrame && m_handOpenLastFrame && m_iGrabCount < 6)
             OnHandClose(h);
     }
 
@@ -117,9 +118,6 @@ public class GrabMotion : MonoBehaviour
             KeepGrabTimeToScale();
             HandCallbacks(foremostHand);
         }
-
-        if (Input.GetKeyDown(KeyCode.R) && m_iGrabCount >= 1)
-            m_iGrabCount = 0;
         m_handOpenLastFrame = m_handOpenThisFrame;
     }
 }
