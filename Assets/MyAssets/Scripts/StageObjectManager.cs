@@ -49,20 +49,20 @@ public class StageObjectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!m_bDestroyPlayerSphere)
-            return;
+        //if (!m_bDestroyPlayerSphere)
+        //    return;
 
-        float cleanliness = Cleanliness.m_fCleanliness;
-        Rect rect = new Rect(50, 10, 400, 300);
-        m_GUIStyle.fontSize = 50;
+        //float cleanliness = Cleanliness.m_fCleanliness;
+        //Rect rect = new Rect(50, 10, 400, 300);
+        //m_GUIStyle.fontSize = 50;
     }
 
-    void OnGUI()
-    {
-        Rect rect = new Rect(10, 10, 400, 300);
-        m_GUIStyle.fontSize = 50;
-        GUI.Label(rect, Cleanliness.m_fCleanliness.ToString(), m_GUIStyle);
-    }
+    //void OnGUI()
+    //{
+    //    Rect rect = new Rect(10, 10, 400, 300);
+    //    m_GUIStyle.fontSize = 50;
+    //    GUI.Label(rect, Cleanliness.m_fCleanliness.ToString() + "%", m_GUIStyle);
+    //}
 
     void RemoveThePlayerSphere()
     {

@@ -37,7 +37,7 @@ public class PlayerSpehre : MonoBehaviour
             return;
 
         // オブジェクトのサイズに応じてステージオブジェクトに対する吸収率を変化させる.
-        float absorptivity = transform.localScale.magnitude * 2.0f;
+        float absorptivity = transform.localScale.magnitude * 100.0f;
         //Debug.Log(absorptivity);
 
         // Startメソッドで取得した全オブジェクトに対し以下の処理を行う.
@@ -47,7 +47,9 @@ public class PlayerSpehre : MonoBehaviour
             Vector3 toPosition = transform.position - obj.transform.position;
             // 取得したベクトルをオブジェクト自身のvelocityへと加えていく.
             // absorptivityというのは吸収率.
-            obj.rigidbody.velocity += toPosition.normalized * (absorptivity / Mathf.Max(1.0f, toPosition.magnitude));
+            obj.rigidbody.AddForce(toPosition.normalized * (absorptivity / Mathf.Max(1.0f, toPosition.magnitude)), ForceMode.Force);
+            //obj.rigidbody.AddForce(toPosition, ForceMode.Force);
+            //obj.rigidbody.velocity += toPosition.normalized * (absorptivity / Mathf.Max(1.0f, toPosition.magnitude));
         }
 
          //ThisDestroyメソッドのコルーチンを開始

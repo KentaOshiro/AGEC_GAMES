@@ -11,6 +11,11 @@ public class StageClearManager : MonoBehaviour {
     /// クリアするために最大限必要な清潔度
     /// </summary>
     public float GoalBorderMax;
+    /// <summary>
+    /// 清潔度を表示するためのfont等を定義.
+    /// </summary>
+    public GUIStyle m_GUIStyle;
+
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +26,19 @@ public class StageClearManager : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnGUI()
+    {
+        Rect rect = new Rect(10, 10, 100, 50);
+        m_GUIStyle.fontSize = 50;
+        m_GUIStyle.normal.textColor = Color.cyan;
+        GUI.Label(rect, Cleanliness.m_fCleanliness.ToString() + "%", m_GUIStyle);
+
+        Rect rect2 = new Rect(10, 70, 100, 50);
+        m_GUIStyle.fontSize = 25;
+        m_GUIStyle.normal.textColor = Color.red;
+        GUI.Label(rect2, GoalBorderMax + "% ~" + GoalBorderMin + "%", m_GUIStyle);
+    }
 
     /// <summary>
     /// このゲームをクリアしたかをチェックする.
