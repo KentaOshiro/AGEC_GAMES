@@ -9,7 +9,7 @@ public class PlayerSpehre : MonoBehaviour
     /// </summary>
     List<GameObject> SuctionObjectsArray = new List<GameObject>();
     GameObject m_StageClearManager;
-
+    GameObject m_GrabMotion;
     bool m_bIsCollision = false;
 
     float m_fStageDirtinessdegree = 0.0f;
@@ -18,6 +18,7 @@ public class PlayerSpehre : MonoBehaviour
     void Start()
     {
         m_StageClearManager = GameObject.Find("StageClearManager");
+        m_GrabMotion = GameObject.Find("Main Camera");
         // FindGameObjectsWithTagはGameObject[]型を返すためテンポラリとして宣言しているSuctionObjectsにキャッシュする.
         GameObject[] SuctionObjects = GameObject.FindGameObjectsWithTag("SuctionObject");
 
@@ -38,7 +39,6 @@ public class PlayerSpehre : MonoBehaviour
 
         // オブジェクトのサイズに応じてステージオブジェクトに対する吸収率を変化させる.
         float absorptivity = transform.localScale.magnitude * 100.0f;
-        //Debug.Log(absorptivity);
 
         // Startメソッドで取得した全オブジェクトに対し以下の処理を行う.
         foreach (GameObject obj in SuctionObjectsArray)
@@ -48,8 +48,6 @@ public class PlayerSpehre : MonoBehaviour
             // 取得したベクトルをオブジェクト自身のvelocityへと加えていく.
             // absorptivityというのは吸収率.
             obj.rigidbody.AddForce(toPosition.normalized * (absorptivity / Mathf.Max(1.0f, toPosition.magnitude)), ForceMode.Force);
-            //obj.rigidbody.AddForce(toPosition, ForceMode.Force);
-            //obj.rigidbody.velocity += toPosition.normalized * (absorptivity / Mathf.Max(1.0f, toPosition.magnitude));
         }
 
          //ThisDestroyメソッドのコルーチンを開始
@@ -80,6 +78,8 @@ public class PlayerSpehre : MonoBehaviour
         yield return  new WaitForSeconds(2.0f);
         // 自身を削除する前にStageClearManagerに対し現時点でステージをクリアしたか否かを確認させる.
         m_StageClearManager.GetComponent<StageClearManager>().ShowResult();
+        // 自身が削除された事を GrabMotion 側へ通知する.
+        m_GrabMotion.GetComponent<GrabMotion>().DeleteBlackHall();
         // 3秒後に自身を削除する
         Destroy(gameObject);
     }

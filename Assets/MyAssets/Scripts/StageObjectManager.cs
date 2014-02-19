@@ -17,10 +17,6 @@ public class StageObjectManager : MonoBehaviour
     /// </summary>
     public int MaxGenerateObjects;
     /// <summary>
-    /// 清潔度を表示するためのfont等を定義.
-    /// </summary>
-    public GUIStyle m_GUIStyle;
-    /// <summary>
     /// Playerが生成したオブジェクトを削除するか否かを定義している.
     /// </summary>
     private bool m_bDestroyPlayerSphere = false;
@@ -49,20 +45,12 @@ public class StageObjectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (!m_bDestroyPlayerSphere)
-        //    return;
-
-        //float cleanliness = Cleanliness.m_fCleanliness;
-        //Rect rect = new Rect(50, 10, 400, 300);
-        //m_GUIStyle.fontSize = 50;
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Cleanliness.Initialize();
+            Application.LoadLevel("MyRoom");
+        }
     }
-
-    //void OnGUI()
-    //{
-    //    Rect rect = new Rect(10, 10, 400, 300);
-    //    m_GUIStyle.fontSize = 50;
-    //    GUI.Label(rect, Cleanliness.m_fCleanliness.ToString() + "%", m_GUIStyle);
-    //}
 
     void RemoveThePlayerSphere()
     {
