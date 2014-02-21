@@ -14,7 +14,9 @@ public class StageClearManager : MonoBehaviour {
     /// <summary>
     /// 清潔度を表示するためのfont等を定義.
     /// </summary>
+    public Texture2D m_FontBackgroundTexture;
     public GUIStyle m_GUIStyle;
+    public GUIStyleState m_GUIStyleState;
     /// <summary>
     /// ステージクリアか否かを定義する.
     /// </summary>
@@ -27,7 +29,9 @@ public class StageClearManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	    
+        m_GUIStyleState.background = m_FontBackgroundTexture;
+        m_GUIStyle.normal = m_GUIStyleState;
+
 	}
 	
 	// Update is called once per frame
@@ -45,7 +49,7 @@ public class StageClearManager : MonoBehaviour {
         Rect ShowClearBorder = new Rect(10, 70, 100, 50);
         m_GUIStyle.fontSize = 25;
         m_GUIStyle.normal.textColor = Color.red;
-        GUI.Label(ShowClearBorder, "クリア基準値:" + GoalBorderMax + "% ~" + GoalBorderMin + "%", m_GUIStyle);
+        GUI.Label(ShowClearBorder, "基準値:" + GoalBorderMax + "% ~" + GoalBorderMin + "%", m_GUIStyle);
 
         Rect ShowRemitGenerateCount = new Rect(10, Screen.height - 50, 100, 50);
         m_GUIStyle.fontSize = 25;
@@ -59,7 +63,6 @@ public class StageClearManager : MonoBehaviour {
         {
             Rect Result = new Rect(Screen.width / 3.0f, Screen.height / 2.0f, 100, 100);
             m_GUIStyle.fontSize = 50;
-
             if (m_bIsStageClear)
             {
                 m_GUIStyle.normal.textColor = Color.red;

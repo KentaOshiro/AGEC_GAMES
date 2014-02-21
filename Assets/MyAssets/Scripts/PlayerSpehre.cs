@@ -10,6 +10,7 @@ public class PlayerSpehre : MonoBehaviour
     List<GameObject> SuctionObjectsArray = new List<GameObject>();
     GameObject m_StageClearManager;
     GameObject m_GrabMotion;
+    GameObject m_ObjectAbsorbManager;
     bool m_bIsCollision = false;
 
     float m_fStageDirtinessdegree = 0.0f;
@@ -19,6 +20,7 @@ public class PlayerSpehre : MonoBehaviour
     {
         m_StageClearManager = GameObject.Find("StageClearManager");
         m_GrabMotion = GameObject.Find("Main Camera");
+        m_ObjectAbsorbManager = GameObject.Find("ObjectAbsorbManager");
         // FindGameObjectsWithTagはGameObject[]型を返すためテンポラリとして宣言しているSuctionObjectsにキャッシュする.
         GameObject[] SuctionObjects = GameObject.FindGameObjectsWithTag("SuctionObject");
 
@@ -63,11 +65,13 @@ public class PlayerSpehre : MonoBehaviour
 
         if (col.gameObject.tag == "SuctionObject")
         {
+            m_ObjectAbsorbManager.GetComponent<ObjectAbsorbManager>().CollectObject(col.gameObject);
             // ぶつかったSuctionObjectから不潔度を取得し、清潔度を管理するCleanlinessへ値を渡す.
             Cleanliness.m_fCleanliness += col.gameObject.GetComponent<StageObjects>().m_fDirtinessdegree;
             // 配列からこの要素を削除する.
             SuctionObjectsArray.Remove(col.gameObject);
             // Gameシーン上から削除する.
+            //col.gameObject.active = false;
             Destroy(col.gameObject);
         }
     }
